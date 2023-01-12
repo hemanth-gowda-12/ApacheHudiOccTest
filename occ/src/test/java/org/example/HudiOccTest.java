@@ -11,6 +11,7 @@ import org.apache.hudi.client.HoodieJavaWriteClient;
 import org.apache.hudi.client.WriteStatus;
 import org.apache.hudi.client.common.HoodieJavaEngineContext;
 import org.apache.hudi.client.transaction.lock.FileSystemBasedLockProvider;
+import org.apache.hudi.client.transaction.lock.ZookeeperBasedLockProvider;
 import org.apache.hudi.common.engine.EngineType;
 import org.apache.hudi.common.fs.FSUtils;
 import org.apache.hudi.common.model.*;
@@ -145,7 +146,6 @@ public class HudiOccTest {
                         .withAutoCommit(false)
                         .withLockConfig(
                                 HoodieLockConfig.newBuilder()
-                                        .withClientRetryWaitTimeInMillis(1000L)
 
 //                        Case 1: Uncomment below to use file system based lock provider
                                         .withLockProvider(FileSystemBasedLockProvider.class)
@@ -154,6 +154,7 @@ public class HudiOccTest {
                                         .withClientRetryWaitTimeInMillis(10000L)
                                         .withNumRetries(10000)
                                         .withClientRetryWaitTimeInMillis(10000L)
+
 
 //                        Case 2: Uncomment below to use Zookeeper based lock provider
 //                        .withLockProvider(ZookeeperBasedLockProvider.class)
